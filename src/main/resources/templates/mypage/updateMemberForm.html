@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script>var tt = "내 정보 수정"</script>
+<div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
+<!-- check out section -->
+<div class="checkout-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="checkout-accordion-wrap">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card single-accordion">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        내 정보
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <div class="billing-address-form">
+                                        <form th:object="${form}" method="post" id = "frm2">
+                                            <p>이름: <input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력하세요" th:class="${#fields.hasErrors('name')}? 'form-control fieldError' : 'form-control'"></p>
+                                            <p>거주 지역: <input type="text" th:field="*{city}" class="form-control" placeholder="도시를 입력하세요"></p>
+                                            <p>동: <input type="text" th:field="*{street}" class="form-control" placeholder="거리를 입력하세요"></p>
+                                            <p>우편 번호: <input type="text" th:field="*{zipcode}" class="form-control" placeholder="우편번호를 입력하세요"></p>
+                                            <p>전화 번호: <input type="text" th:field="*{phone}" class="form-control" placeholder="전화번호를 입력하세요"></p>
+                                            <a href="#" onclick="document.getElementById('frm2').submit();" class="boxed-btn">수정 완료</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end check out section -->
+<div th:replace="fragments/footer :: footer" />
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:postgres://cgdslheuetamsx:8a444b6acf93b52fec01e08c6e50d5f3b1f94acaffaa32e1cfd2db68cb254a59@ec2-34-232-144-162.compute-1.amazonaws.com:5432/d23ptnqipvhf1q
+    username: cgdslheuetamsx
+    password: 8a444b6acf93b52fec01e08c6e50d5f3b1f94acaffaa32e1cfd2db68cb254a59
+    port: 5432
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+      # show_sql: true
+      format_sql: true
+
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 10MB
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+
+server:
+  servlet:
+    session:
+      tracking-modes: cookie
+      timeout: 1800
+  port: ${port:8080}

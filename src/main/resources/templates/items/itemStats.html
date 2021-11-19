@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+    <script>var tt = "판매 통계"</script>
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
+    <div class="col-lg-8 offset-lg-2 text-center">
+        <h3></h3>
+        <h3><span class="orange-text" th:text="|총 판매량   ${totalSales} kg|"></span></h3>
+        <h3><span style="color: #0c5460" th:text="|총 판매수익   ${totalMoney} 원|"></span></h3>
+        <h3><span class="orange-text" th:text="|평균 구매 연령   ${totalAge} 세|"></span></h3>
+        <h3><span style="color: #0c5460" th:text="|가장 많이 구매한 지역   ${mostCity} |"></span></h3>
+    </div>
+    <!-- cart -->
+    <div class="cart-section mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12">
+                    <div class="cart-table-wrap">
+                        <table class="cart-table">
+                            <thead class="cart-table-head">
+                            <tr class="table-head-row">
+                                <th>도시</th>
+                                <th>성별</th>
+                                <th>구매가격</th>
+                                <th>구매일자</th>
+                                <th>연령</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="table-body-row" th:each="order : ${orders}">
+                                <td th:text="${order.member.address?.city}"></td>
+                                <td th:text="${order.member.genderStatus}"></td>
+                                <td th:text="${order.getTotalPrice()}"></td>
+                                <td th:text="${#temporals.format(order.orderDate, 'yyyy-MM-dd HH:mm')}"></td>
+                                <td th:text="${order.member.age} + '세'"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end cart -->
+
+    <div th:replace="fragments/footer :: footer" />
+</body>
+
+</html>

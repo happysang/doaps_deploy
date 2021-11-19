@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head th:replace="fragments/header :: header">
+    <title>DOAPS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<script> var tt = "전체 상품"</script>
+<div th:replace="fragments/bodyHeader :: bodyHeader" />
+
+<!--PreLoader-->
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
+    </div>
+</div>
+<!--PreLoader Ends-->
+
+<!-- search area -->
+<div class="search-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="close-btn"><i class="fas fa-window-close"></i></span>
+                <div class="search-bar">
+                    <div class="search-bar-tablecell">
+                        <h3>Search For:</h3>
+                        <input type="text" placeholder="Keywords">
+                        <button type="submit">Search <i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- latest news -->
+<div class="latest-news mt-150 mb-150">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-filters">
+                    <ul>
+                        <li class="active" data-filter="*">모두보기</li>
+                        <li data-filter=".korea">국내산</li>
+                        <li data-filter=".china">중국산</li>
+                        <li data-filter=".usa">미국산</li>
+                        <li data-filter=".etc">기타</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row product-lists">
+            <div class="col-lg-4 col-md-6 korea" th:each="item : ${korea}">
+                <div class="single-latest-news">
+                    <a href="" th:href="@{/items/{id}/detail (id=${item.id}) }"><img th:src="|../@{${item.getImgUrl()}}|"></a>
+                    <div class="news-text-box">
+                        <a href="" th:href="@{/items/{id}/detail (id=${item.id}) }" th:text="${item.name}"> <i class="fas fa-angle-right"></i></a>
+                        <h3><a href="" th:href="@{/items/{id}/detail (id=${item.id}) }"></a></h3>
+                        <p class="blog-meta">
+                            <span class="author"><i th:text="${item.member.loginId}" class="fas fa-user"></i></span>
+                            수입날짜: <span class="date"><i th:text="${item.importDate}" class="fas fa-calendar"></i></span>
+                        </p>
+                        <p class="excerpt txt_line" th:text="${item.explain}"></p>
+                        <a href="#" th:href="@{/items/{id}/detail (id=${item.id}) }" class="read-more-btn">상세 페이지 보기 <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 china" th:each="item : ${china}">
+                <div class="single-latest-news">
+                    <a href="" th:href="@{/items/{id}/detail (id=${item.id}) }"><img th:src="|../@{${item.getImgUrl()}}|"></a>
+                    <div class="news-text-box">
+                        <h3><a href="" th:href="@{/items/{id}/detail (id=${item.id}) }"></a></h3>
+                        <p class="blog-meta">
+                            <span class="author"><i th:text="${item.member.loginId}" class="fas fa-user"></i></span>
+                            수입날짜: <span class="date"><i th:text="${item.importDate}" class="fas fa-calendar"></i></span>
+                        </p>
+                        <p class="excerpt txt_line" th:text="${item.explain}"></p>
+                        <a href="#" th:href="@{/items/{id}/detail (id=${item.id}) }" class="read-more-btn">상세 페이지 보기 <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 usa" th:each="item : ${usa}">
+                <div class="single-latest-news">
+                    <a href="" th:href="@{/items/{id}/detail (id=${item.id}) }"><img th:src="|../@{${item.getImgUrl()}}|"></a>
+                    <div class="news-text-box">
+                        <h3><a href="" th:href="@{/items/{id}/detail (id=${item.id}) }"></a></h3>
+                        <p class="blog-meta">
+                            <span class="author"><i th:text="${item.member.loginId}" class="fas fa-user"></i></span>
+                            수입날짜: <span class="date"><i th:text="${item.importDate}" class="fas fa-calendar"></i></span>
+                        </p>
+                        <p class="excerpt txt_line" th:text="${item.explain}"></p>
+                        <a href="#" th:href="@{/items/{id}/detail (id=${item.id}) }" class="read-more-btn">상세 페이지 보기 <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 etc" th:each="item : ${etc}">
+                <div class="single-latest-news">
+                    <a href="" th:href="@{/items/{id}/detail (id=${item.id}) }"><img th:src="|../@{${item.getImgUrl()}}|"></a>
+                    <div class="news-text-box">
+                        <h3><a href="" th:href="@{/items/{id}/detail (id=${item.id}) }"></a></h3>
+                        <p class="blog-meta">
+                            <span class="author"><i th:text="${item.member.loginId}" class="fas fa-user"></i></span>
+                            수입날짜: <span class="date"><i th:text="${item.importDate}" class="fas fa-calendar"></i></span>
+                        </p>
+                        <p class="txt_line" th:text="${item.explain}"></p>
+                        <a href="#" th:href="@{/items/{id}/detail (id=${item.id}) }" class="read-more-btn">상세 페이지 보기 <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end latest news -->
+
+<!-- logo carousel -->
+<div class="logo-carousel-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="logo-carousel-inner">
+                    <div class="single-logo-item">
+                        <img src="../assets/img/company-logos/1.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="../assets/img/company-logos/2.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="../assets/img/company-logos/3.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="../assets/img/company-logos/4.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="../assets/img/company-logos/5.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end logo carousel -->
+<div th:replace="fragments/footer :: footer" />
+</body>
+</html>

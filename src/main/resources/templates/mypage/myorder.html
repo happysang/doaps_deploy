@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+    <script>var tt = "내 주문 목록"</script>
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <!-- cart -->
+    <div class="cart-section mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12">
+                    <div class="cart-table-wrap">
+                        <table class="cart-table">
+                            <thead class="cart-table-head">
+                            <tr class="table-head-row">
+                                <th class="product-image">상품 이미지</th>
+                                <th >주문 상품명</th>
+                                <th >가격</th>
+                                <th >주문 수량</th>
+                                <th >상태</th>
+                                <th >주문 일시</th>
+                                <th class="product-quantity">취소</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="table-body-row" th:each="item : ${orders}">
+                                <td class="product-image"><img th:src="|../@{${item.orderItems[0].item.getImgUrl()}}|"></td>
+                                <td th:text="${item.orderItems[0].item.name}"></td>
+                                <td th:text="${item.orderItems[0].orderPrice}"></td>
+                                <td th:text="${item.orderItems[0].count}"></td>
+                                <td th:text="${item.status}"></td>
+                                <td th:text="${#temporals.format(item.orderDate, 'yyyy-MM-dd HH:mm')}"></td>
+                                <td>
+                                    <a th:if="${item.status.name() == 'ORDER'}" href="#"
+                                       th:href="'javascript:cancel('+${item.id}+')'"
+                                       class="btn btn-danger">주문 취소 신청</a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end cart -->
+
+<div th:replace="fragments/footer :: footer" />
+</body>
+<script>
+    function cancel(id) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/orders/" + id + "/cancel");
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+</html>

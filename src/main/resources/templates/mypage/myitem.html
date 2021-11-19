@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+    <script>var tt = "내가 등록한 상품"</script>
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+<!-- cart -->
+<div class="cart-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="cart-table-wrap">
+                    <table class="cart-table">
+                        <thead class="cart-table-head">
+                        <tr class="table-head-row">
+                            <th >상품명</th>
+                            <th >가격</th>
+                            <th >재고 수량</th>
+                            <th>수정</th>
+                            <th>통계</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="table-body-row" th:each="item : ${items}">
+                            <td><a href="#" th:href="@{/items/{id}/detail (id=${item.id}) }"><span th:text="${item.name}"></span></a> </td>
+                            <td th:text="${item.price}"></td>
+                            <td th:text="${item.stockQuantity}"></td>
+                            <td>
+                                <a href="#" th:href="@{/items/{id}/edit (id=${item.id})}"
+                                   class="boxed-btn" role="button">수정</a>
+                            </td>
+                            <td>
+                                <a href="#" th:href="@{/items/{id}/stats (id=${item.id})}"
+                                   class="boxed-btn" role="button">통계</a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end cart -->
+
+<div th:replace="fragments/footer :: footer" />
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head th:replace="fragments/header :: header">
+    <title>DOAPS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<script> var tt = "상세 제품 소개"</script>
+<div th:replace="fragments/bodyHeader :: bodyHeader" />
+
+
+<!--PreLoader-->
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
+    </div>
+</div>
+<!--PreLoader Ends-->
+
+<!-- single product -->
+<div class="single-product mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="single-product-img">
+                    <a href=""><img th:src="|../../@{${item.getImgUrl()}}|"></a>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="single-product-content">
+                    <h2 th:text="${item.name}"></h2>
+                    <h3>가격: <span th:text="${item.price}"></span>원</h3>
+                    <h3>재고: <span th:text="${item.stockQuantity}"></span>kg</h3>
+                    <p th:text="${item.explain}"></p>
+                    <div class="single-product-form">
+                        <p style="font-size: medium"><strong>가공상태: </strong><span th:text="${item.processing}"></span></p>
+                        <p style="font-size: medium"><strong>품종: </strong><span th:text="${item.variety}"></span></p>
+                        <p style="font-size: medium"><strong>원산지: </strong><span th:text="${item.originD}"></span></p>
+                        <p class="date" style="font-size: medium"><strong>수입일: </strong><span th:text="${item.importDate}"></span></p>
+                        <p class="date" style="font-size: medium"><strong>가공일: </strong><span th:text="${item.processDate}"></span></p>
+                        <p style="font-size: medium"><strong>맵기 정도 (SHU) : </strong><span th:text="${item.spicy}"></span></p>
+                        <span class="author">판매자: <p th:text="${item.member.loginId}" class="fas fa-user"></p></span>
+                        <table>
+                            <tr><th th:bgcolor="${item.color}">&nbsp;&nbsp; 색 &nbsp;&nbsp;</th></tr>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <a th:href="@{/order/{itemId} (itemId=${item.id})}" class="cart-btn"><i class="fas fa-shopping-cart"></i>주문</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end single product -->
+<div th:replace="fragments/footer :: footer" />
+</body>
+</html>
