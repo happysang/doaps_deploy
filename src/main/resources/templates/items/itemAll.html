@@ -60,7 +60,7 @@
                 <div class="single-latest-news">
                     <a href="" th:href="@{/items/{id}/detail (id=${item.id}) }"><img th:src="|../@{${item.getImgUrl()}}|"></a>
                     <div class="news-text-box">
-                        <a href="" th:href="@{/items/{id}/detail (id=${item.id}) }" th:text="${item.name}"> <i class="fas fa-angle-right"></i></a>
+                        <h3><a href="" th:href="@{/items/{id}/detail (id=${item.id}) }" th:text="${item.name}"> <i class="fas fa-angle-right"></i></a></h3>
                         <h3><a href="" th:href="@{/items/{id}/detail (id=${item.id}) }"></a></h3>
                         <p class="blog-meta">
                             <span class="author"><i th:text="${item.member.loginId}" class="fas fa-user"></i></span>
