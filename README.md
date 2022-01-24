@@ -1,1 +1,2 @@
-# doaps_project 배포 레포지토리
+고추 쇼핑몰 웹사이트를 프로젝트로 만들었다.
+doaps.herokuapp.com
